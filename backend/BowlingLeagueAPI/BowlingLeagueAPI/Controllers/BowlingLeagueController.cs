@@ -19,7 +19,7 @@ public class BowlingLeagueController : ControllerBase
     [HttpGet(Name = "BowlingLeague")]
     public List<BowlerViewModel> Get()
     {
-       var bowlersList = _context.Bowlers.Include(b => b.Team)
+       var bowlersList = _context.Bowlers.Include(b => b.Team).Where(b => (b.Team.TeamName == "Marlins" || b.Team.TeamName == "Sharks"))
            .Select(b => new BowlerViewModel
            {
                BowlerId = b.BowlerId,
