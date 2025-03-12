@@ -11,6 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<BowlingLeagueContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("BowlingConnection")));
+builder.Services.AddCors();
 
 var app = builder.Build();
 
@@ -21,8 +22,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseCors(x => x.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader());
 
+app.UseHttpsRedirection();  
 app.UseAuthorization();
 
 app.MapControllers();

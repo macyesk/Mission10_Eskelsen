@@ -16,7 +16,7 @@ public class BowlingLeagueController : ControllerBase
         _context = temp;
     }
 
-    [HttpGet(Name = "GetBowlers")]
+    [HttpGet(Name = "BowlingLeague")]
     public List<BowlerViewModel> Get()
     {
        var bowlersList = _context.Bowlers.Include(b => b.Team)
